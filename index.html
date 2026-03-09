@@ -228,8 +228,9 @@
 
           <!-- Nome -->
           <h1 class="display-5 fw-bold">
-            Olá, eu sou <span class="text-brand">{{ profile.nome }}</span>
-          </h1>
+  Olá, eu sou {{ profile.nome }} 
+  <span class="text-brand"></span>
+</h1>
 
           <!-- Título profissional -->
           <p class="lead text-secondary mb-4">
@@ -424,6 +425,28 @@
               required 
               placeholder="seu@email.com">
           </div>
+          <!-- Campo Telefone / WhatsApp -->
+<div class="col-md-6">
+  <label class="form-label text-secondary">Telefone / WhatsApp</label>
+
+  <input 
+    v-model.trim="form.telefone"
+    class="form-control"
+    type="tel"
+    required
+    placeholder="(00) 00000-0000">
+</div> 
+<!-- Campo Telefone / WhatsApp -->
+<div class="col-md-6">
+  <label class="form-label text-secondary">Cidade / Estado</label>
+
+  <input 
+    v-model.trim="form.cidade"
+    class="form-control"
+    type="cid"
+    required
+    placeholder="Cuiabá, MT">
+</div>
 
           <!-- Campo Mensagem -->
           <div class="col-12">
@@ -512,26 +535,44 @@ createApp({
       
       /* ===== INCLUSÃO: LISTA DE SERVIÇOS ===== */
       servicos:[
+        {icone:"bi bi-laptop", titulo:"Formatação e Instalação de Software", 
+    desc:"Formatação de Windows, instalação de programas essenciais, drivers e otimização para melhor desempenho."          
+        },
+        {icone:"bi bi-tools",
+        titulo:"Manutenção de Computadores", desc:"Limpeza, diagnóstico e solução de problemas em computadores e notebooks."
+        },
         { icone:"bi bi-layout-text-window-reverse", titulo:"Landing Pages", desc:"Páginas rápidas, responsivas e focadas em conversão." },
         { icone:"bi bi-phone", titulo:"Sites Responsivos", desc:"Layouts que funcionam perfeito no celular, tablet e desktop." },
         { icone:"bi bi-speedometer2", titulo:"Performance", desc:"Boas práticas para carregar rápido e rodar leve." },
-        { icone:"bi bi-laptop", titulo:"Formatação e Instalação de Software", desc:"Formatação de Windows, instalação de programas essenciais, drivers e otimização para melhor desempenho." }
+
       ],
 
 
       /* Projetos do portfolio */
       projetos:[
         {
-          titulo:"Portfólio Moderno",
-          descricao:"Landing page responsiva com Vue e Bootstrap.",
-          thumb:"https://loja.3deras.com.br/wp-content/uploads/2024/09/produtosimpressoras3-e1726680227879-35-2000x2000.png-2000x2000.png.jpg",
+          titulo:"Site com IA Lovable",
+          descricao:"Landing page responsiva com IA.",
+          thumb:"https://github.com/WillianFugimoto/Meu-Portif-lio-/blob/main/Captura%20de%20tela%202026-03-08%20193016.png?raw=true",
           link:"#",
           github:"#"
-        }
+        },
+        {
+          titulo:"Projeto com impressão 3D",
+          descricao:"Modelos e suportes.",
+          tecnologias: ["HTML", "CSS", "GitHub Pages"],
+          thumb:"https://github.com/WillianFugimoto/impressao-3d/blob/main/suporte%20robo.jpg?raw=true",
+          link:"#",
+          github:"#"
+        },
       ],
+      
+      
 
       /* ===== INCLUSÃO: FORMULÁRIO ===== */
-      form:{ nome:"", email:"", msg:"" },
+      form:{ 
+      nome:"",  email:"", telefone:"", cidade:"",  msg:""
+},
       feedback:""
     }
   },
@@ -540,7 +581,7 @@ createApp({
   methods:{
     enviarContato(){
       this.feedback = "Mensagem enviada ";
-      this.form = { nome:"", email:"", msg:"" };
+      this.form = { nome:"", email:"", telefone:"",cidade:"", msg:"" };
 
       setTimeout(() => {
         this.feedback = "";
